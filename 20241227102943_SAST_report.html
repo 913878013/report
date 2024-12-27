@@ -1,0 +1,848 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SAST Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1, h3 { color: #333; }
+                .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                .summary-table th, .summary-table td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+                .summary-table th { background-color: #f2f2f2; }
+                .issue-summary { margin: 10px 0; padding: 10px; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; display: flex; }
+                .issue-summary:hover { background-color: #f0f0f0; }
+                .issue-number { width: 40px; text-align: center; font-weight: bold; }
+                .severity-high { background-color: #f8d7da; }
+                .severity-medium { background-color: #fff3cd; }
+                .severity-low { background-color: #d4edda; }
+                .severity-critical { background-color: #ff0000; color: white; }
+                .issue-detail { display: none; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; margin-top: 10px; border-radius: 5px; }
+                .issue-detail h4 { margin: 0; }
+            </style>
+            <script>
+                function toggleDetail(id) {
+                    var detail = document.getElementById(id);
+                    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+                }
+            </script>
+        </head>
+        <body>
+            <h1>SAST Report</h1>
+
+            <!-- 汇总表格 -->
+            <h2>漏洞汇总：</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>严重级别</th>
+                        <th>漏洞数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Critical</td>
+                        <td>10</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>High</td>
+                        <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Medium</td>
+                        <td>24</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Low</td>
+                        <td>0</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <h2>按严重程度分类的漏洞信息：</h2>
+
+            
+                
+                    <h3>Critical 风险漏洞（共10个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('cb48a8b8a2cb5b69cd0d689afe08f2447178862c1e0c88793fcae77f8748b507')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an OS command ('OS Command Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/view_help.php:20
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="cb48a8b8a2cb5b69cd0d689afe08f2447178862c1e0c88793fcae77f8748b507">
+                                    <h4>Improper neutralization of special elements used in an OS command ('OS Command Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/view_help.php</p>
+                                    <p><strong>Line:</strong> 20</p>
+                                    <p><strong>Description:</strong> Evaluating non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('bc5196dd6926bda11c424a5211d8ea07c4eff2cc74e2404b14af4cfad9d61980')">
+                                    <div class="issue-number">2</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an OS command ('OS Command Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/view_help.php:22
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="bc5196dd6926bda11c424a5211d8ea07c4eff2cc74e2404b14af4cfad9d61980">
+                                    <h4>Improper neutralization of special elements used in an OS command ('OS Command Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/view_help.php</p>
+                                    <p><strong>Line:</strong> 22</p>
+                                    <p><strong>Description:</strong> Evaluating non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('ca3bde4afa66fe32c34402ed6c4037c075c1a4d447d00724bd56a76be76f33ba')">
+                                    <div class="issue-number">3</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/low.php:10
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="ca3bde4afa66fe32c34402ed6c4037c075c1a4d447d00724bd56a76be76f33ba">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/low.php</p>
+                                    <p><strong>Line:</strong> 10</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('966bfbb7a6caedb8655c0cc8731c24cd26b56ac3edfa0078345ba6dea6b90cec')">
+                                    <div class="issue-number">4</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/low.php:14
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="966bfbb7a6caedb8655c0cc8731c24cd26b56ac3edfa0078345ba6dea6b90cec">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/low.php</p>
+                                    <p><strong>Line:</strong> 14</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('f838fedb847b617ef2769417aae119bada547acc18fd770675f191dd2fdeaf35')">
+                                    <div class="issue-number">5</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/medium.php:19
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="f838fedb847b617ef2769417aae119bada547acc18fd770675f191dd2fdeaf35">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/medium.php</p>
+                                    <p><strong>Line:</strong> 19</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('05bff37f11b787d35128ed02a16c7db2af71f73318c29583c58ec758b7bc33da')">
+                                    <div class="issue-number">6</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/impossible.php:22
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="05bff37f11b787d35128ed02a16c7db2af71f73318c29583c58ec758b7bc33da">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 22</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('ecd1b3c38b0e1fb2f3f1969007edb81274dad8f4737e7b38918001b82ca41aef')">
+                                    <div class="issue-number">7</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/medium.php:23
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="ecd1b3c38b0e1fb2f3f1969007edb81274dad8f4737e7b38918001b82ca41aef">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/medium.php</p>
+                                    <p><strong>Line:</strong> 23</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('c3c0378e9318a24d6dbad25c9954a36bc41ed60e29f53c1cafc97886125ee551')">
+                                    <div class="issue-number">8</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/high.php:26
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="c3c0378e9318a24d6dbad25c9954a36bc41ed60e29f53c1cafc97886125ee551">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/high.php</p>
+                                    <p><strong>Line:</strong> 26</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('f3aa38ab5f398bcb0803813dfbd37c5654f5a9b342853b9feef38c97333119b6')">
+                                    <div class="issue-number">9</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/impossible.php:26
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="f3aa38ab5f398bcb0803813dfbd37c5654f5a9b342853b9feef38c97333119b6">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 26</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('00e88895866945b5568e6a2853d1702a21f056a8a95dec78afd87734978d17f7')">
+                                    <div class="issue-number">10</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/exec/source/high.php:30
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="00e88895866945b5568e6a2853d1702a21f056a8a95dec78afd87734978d17f7">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> vulnerabilities/exec/source/high.php</p>
+                                    <p><strong>Line:</strong> 30</p>
+                                    <p><strong>Description:</strong> Executing non-constant commands. This can lead to command injection.</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+                    <h3>High 风险漏洞（共1个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('93bc68acd5ce5b5cc55456edf64db1c5a240f569c7e28bcd175dc8f68389d388')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of directives in dynamically evaluated code ('Eval Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/javascript/source/high.js:1
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="93bc68acd5ce5b5cc55456edf64db1c5a240f569c7e28bcd175dc8f68389d388">
+                                    <h4>Improper neutralization of directives in dynamically evaluated code ('Eval Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> vulnerabilities/javascript/source/high.js</p>
+                                    <p><strong>Line:</strong> 1</p>
+                                    <p><strong>Description:</strong> The application was found calling the `eval` function OR Function()
+  constructor OR setTimeout() OR setInterval() methods. If the
+
+  variables or strings or functions passed to these methods contains user-supplied input, an adversary could attempt to execute arbitrary
+
+  JavaScript
+
+  code. This could lead to a full system compromise in Node applications or Cross-site Scripting
+
+  (XSS) in web applications.
+
+
+  To remediate this issue, remove all calls to above methods and consider alternative methods for
+
+  executing
+
+  the necessary business logic. There is almost no safe method of calling `eval` or other above stated sinks with
+
+  user-supplied input.
+
+  Instead, consider alternative methods such as using property accessors to dynamically access
+
+  values.
+
+
+  Example using property accessors to dynamically access an object's property:
+
+  ```
+
+  // Define an object
+
+  const obj = {key1: 'value1', key2: 'value2'};
+
+  // Get key dynamically from user input
+
+  const key = getUserInput();
+
+  // Check if the key exists in our object and return it, or a default empty string
+
+  const value = (obj.hasOwnProperty(key)) ? obj[key] : '';
+
+  // Work with the value
+
+  ```
+
+
+  For more information on why not to use `eval`, and alternatives see:
+
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!
+
+  Other References:
+
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function
+
+  - https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
+
+  - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+                    <h3>Medium 风险漏洞（共24个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('59c82ceb95ef0f9e281de5339f6644de43d7afc5da42e747cbea028a28a0821b')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/weak_id/source/high.php:10
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="59c82ceb95ef0f9e281de5339f6644de43d7afc5da42e747cbea028a28a0821b">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/weak_id/source/high.php</p>
+                                    <p><strong>Line:</strong> 10</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('7bcc4eff03747451914bbed65ce771507527cf937efcc5d31e1b17e02e183939')">
+                                    <div class="issue-number">2</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/brute/source/medium.php:11
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="7bcc4eff03747451914bbed65ce771507527cf937efcc5d31e1b17e02e183939">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/brute/source/medium.php</p>
+                                    <p><strong>Line:</strong> 11</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('09bcf8f7884a14c11acf046a941cfd801f2ff7bc9d568805927f47e903b02dae')">
+                                    <div class="issue-number">3</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/source/low.php:12
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="09bcf8f7884a14c11acf046a941cfd801f2ff7bc9d568805927f47e903b02dae">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/source/low.php</p>
+                                    <p><strong>Line:</strong> 12</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('99983ed8bcd755ceb7df71c5d59d109b8d928cf50e215a04a4dda7d4d7237789')">
+                                    <div class="issue-number">4</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/impossible.php:14
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="99983ed8bcd755ceb7df71c5d59d109b8d928cf50e215a04a4dda7d4d7237789">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 14</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('971ee271b96d16010d29eed48ff59e60160eac06901fbfbc84567e263abbe0b8')">
+                                    <div class="issue-number">5</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/source/medium.php:14
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="971ee271b96d16010d29eed48ff59e60160eac06901fbfbc84567e263abbe0b8">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/source/medium.php</p>
+                                    <p><strong>Line:</strong> 14</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('7132b11a5ce6a008711219b9c0d17fb3a590ef9c44d5c56b8ad7a279a2bfc2b9')">
+                                    <div class="issue-number">6</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/source/impossible.php:15
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="7132b11a5ce6a008711219b9c0d17fb3a590ef9c44d5c56b8ad7a279a2bfc2b9">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 15</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('3a59c36b05a0ad362c181cc1e6d7dbbaa899e4c49feda49ac82146e0460503e4')">
+                                    <div class="issue-number">7</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/brute/source/high.php:16
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="3a59c36b05a0ad362c181cc1e6d7dbbaa899e4c49feda49ac82146e0460503e4">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/brute/source/high.php</p>
+                                    <p><strong>Line:</strong> 16</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('06f286b6b6d8675020b203d539c16eab729f00d9497144b9af803bcca1adf849')">
+                                    <div class="issue-number">8</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/brute/source/impossible.php:16
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="06f286b6b6d8675020b203d539c16eab729f00d9497144b9af803bcca1adf849">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/brute/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 16</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('adf91f5cfc95ed38d39d84b80163a6bcfa0b91fadb327b378cbed107a02706a7')">
+                                    <div class="issue-number">9</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/upload/source/impossible.php:18
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="adf91f5cfc95ed38d39d84b80163a6bcfa0b91fadb327b378cbed107a02706a7">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/upload/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 18</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('e239186c708e0027a1ff0884710e633f9b2f320f048822ac859c4610dd3ebf83')">
+                                    <div class="issue-number">10</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/impossible.php:19
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="e239186c708e0027a1ff0884710e633f9b2f320f048822ac859c4610dd3ebf83">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 19</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('fb2dfa0fc56b9d1ba99d2d4ecad4ddddf644f8100f069f847a2fee7718d4d246')">
+                                    <div class="issue-number">11</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/test_credentials.php:19
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="fb2dfa0fc56b9d1ba99d2d4ecad4ddddf644f8100f069f847a2fee7718d4d246">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/test_credentials.php</p>
+                                    <p><strong>Line:</strong> 19</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('305c76d0904e024902e3350e3cc92bd98947333607a713357fe981c4c50d78cc')">
+                                    <div class="issue-number">12</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/upload/source/impossible.php:20
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="305c76d0904e024902e3350e3cc92bd98947333607a713357fe981c4c50d78cc">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/upload/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 20</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('f3dfbf5bc3e3744dd3a25bd4b757606de66aaf62b418150a1da8a500e90dcfa3')">
+                                    <div class="issue-number">13</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/impossible.php:24
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="f3dfbf5bc3e3744dd3a25bd4b757606de66aaf62b418150a1da8a500e90dcfa3">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 24</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('8f70ba395f0a687a925c7ef01f88e3274e7605d975226a543231aac5ca7aede3')">
+                                    <div class="issue-number">14</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/high.php:27
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="8f70ba395f0a687a925c7ef01f88e3274e7605d975226a543231aac5ca7aede3">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/high.php</p>
+                                    <p><strong>Line:</strong> 27</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('dd8165173e31e135fdc312aa1a401172ba777cbea0231ba081dc49bf3c21e95f')">
+                                    <div class="issue-number">15</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> login.php:27
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="dd8165173e31e135fdc312aa1a401172ba777cbea0231ba081dc49bf3c21e95f">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> login.php</p>
+                                    <p><strong>Line:</strong> 27</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('63fc2f56676c013c595a866f2c23195676ee5acb88313ec61781fd9156b55498')">
+                                    <div class="issue-number">16</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/source/impossible.php:29
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="63fc2f56676c013c595a866f2c23195676ee5acb88313ec61781fd9156b55498">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 29</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('0ca4e9f7edeccb2d0d9f6a4b8e86be018540a57d2ef1afa76117e665b973918f')">
+                                    <div class="issue-number">17</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/csrf/source/high.php:39
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="0ca4e9f7edeccb2d0d9f6a4b8e86be018540a57d2ef1afa76117e665b973918f">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/csrf/source/high.php</p>
+                                    <p><strong>Line:</strong> 39</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('b202e17a77c6210f8be75d3ffeda5330ff27619b92cf0de75bcb761dfb218ef0')">
+                                    <div class="issue-number">18</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/low.php:57
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="b202e17a77c6210f8be75d3ffeda5330ff27619b92cf0de75bcb761dfb218ef0">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/low.php</p>
+                                    <p><strong>Line:</strong> 57</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('11ec112ce4104b87af62e3f76b6ad217c6cb39196be8267afdcb17882018e5a6')">
+                                    <div class="issue-number">19</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> dvwa/includes/dvwaPage.inc.php:639
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="11ec112ce4104b87af62e3f76b6ad217c6cb39196be8267afdcb17882018e5a6">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> dvwa/includes/dvwaPage.inc.php</p>
+                                    <p><strong>Line:</strong> 639</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('9288c6ca386f18b69382ad1219b1fbc9ce00d823ff1c5b06687c8ef34d66dcc2')">
+                                    <div class="issue-number">20</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/captcha/source/medium.php:65
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="9288c6ca386f18b69382ad1219b1fbc9ce00d823ff1c5b06687c8ef34d66dcc2">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/captcha/source/medium.php</p>
+                                    <p><strong>Line:</strong> 65</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('ee4770e810ef53458f747983fa04c7ae8d9e471a301699f6485d69577f76e2cd')">
+                                    <div class="issue-number">21</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/weak_id/source/impossible.php:6
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="ee4770e810ef53458f747983fa04c7ae8d9e471a301699f6485d69577f76e2cd">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/weak_id/source/impossible.php</p>
+                                    <p><strong>Line:</strong> 6</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('95849e39d214be4a821208d2ecbac5eef1613e6a799f18514217aae5368533fc')">
+                                    <div class="issue-number">22</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of weak hash
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/brute/source/low.php:9
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="95849e39d214be4a821208d2ecbac5eef1613e6a799f18514217aae5368533fc">
+                                    <h4>Use of weak hash - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/brute/source/low.php</p>
+                                    <p><strong>Line:</strong> 9</p>
+                                    <p><strong>Description:</strong> Detected usage of weak crypto function. Consider using stronger alternatives.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('f7b7d0828f226f0fbd8cc6a77a212a7918316c95cd9eb507bf5f324f3a783c27')">
+                                    <div class="issue-number">23</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Exposure of sensitive system information to an unauthorized control sphere
+                                        <br>
+                                        <strong>文件位置：</strong> phpinfo.php:8
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="f7b7d0828f226f0fbd8cc6a77a212a7918316c95cd9eb507bf5f324f3a783c27">
+                                    <h4>Exposure of sensitive system information to an unauthorized control sphere - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> phpinfo.php</p>
+                                    <p><strong>Line:</strong> 8</p>
+                                    <p><strong>Description:</strong> The 'phpinfo' function may reveal sensitive information about your environment.</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('91a9f1ecc635c8b72893550a06105d350941b1208c8dc6b23112ed42333d0cb2')">
+                                    <div class="issue-number">24</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Regular expression with non-literal value
+                                        <br>
+                                        <strong>文件位置：</strong> vulnerabilities/javascript/source/high.js:1
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="91a9f1ecc635c8b72893550a06105d350941b1208c8dc6b23112ed42333d0cb2">
+                                    <h4>Regular expression with non-literal value - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> vulnerabilities/javascript/source/high.js</p>
+                                    <p><strong>Line:</strong> 1</p>
+                                    <p><strong>Description:</strong> The `RegExp` constructor was called with a non-literal value. If an adversary were able to
+supply a malicious regex, they could cause a Regular Expression Denial of Service (ReDoS)
+against the application. In Node applications, this could cause the entire application to no
+longer be responsive to other users' requests.
+
+To remediate this issue, never allow user-supplied regular expressions. Instead, the regular 
+expression should be  hardcoded. If this is not possible, consider using an alternative regular
+expression engine such as [node-re2](https://www.npmjs.com/package/re2). RE2 is a safe alternative 
+that does not support backtracking, which is what leads to ReDoS.
+
+Example using re2 which does not support backtracking (Note: it is still recommended to
+never use user-supplied input):
+```
+// Import the re2 module
+const RE2 = require('re2');
+
+function match(userSuppliedRegex, userInput) {
+    // Create a RE2 object with the user supplied regex, this is relatively safe
+    // due to RE2 not supporting backtracking which can be abused to cause long running
+    // queries
+    var re = new RE2(userSuppliedRegex);
+    // Execute the regular expression against some userInput
+    var result = re.exec(userInput);
+    // Work with the result
+}
+```
+
+For more information on Regular Expression DoS see:
+- https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS
+</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+            
+
+        </body>
+        </html>
+        
