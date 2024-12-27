@@ -1,0 +1,106 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SAST Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1, h3 { color: #333; }
+                .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                .summary-table th, .summary-table td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+                .summary-table th { background-color: #f2f2f2; }
+                .issue-summary { margin: 10px 0; padding: 10px; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; display: flex; }
+                .issue-summary:hover { background-color: #f0f0f0; }
+                .issue-number { width: 40px; text-align: center; font-weight: bold; }
+                .severity-high { background-color: #f8d7da; }
+                .severity-medium { background-color: #fff3cd; }
+                .severity-low { background-color: #d4edda; }
+                .severity-critical { background-color: #ff0000; color: white; }
+                .issue-detail { display: none; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; margin-top: 10px; border-radius: 5px; }
+                .issue-detail h4 { margin: 0; }
+            </style>
+            <script>
+                function toggleDetail(id) {
+                    var detail = document.getElementById(id);
+                    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+                }
+            </script>
+        </head>
+        <body>
+            <h1>SAST Report</h1>
+
+            <!-- 汇总表格 -->
+            <h2>漏洞汇总：</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>严重级别</th>
+                        <th>漏洞数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Critical</td>
+                        <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>High</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Medium</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Low</td>
+                        <td>0</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <h2>按严重程度分类的漏洞信息：</h2>
+
+            
+                
+                    <h3>Critical 风险漏洞（共1个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-critical"
+                                     onclick="toggleDetail('658060d1068673797aab5c5a78f6a757b65f6614ea954f62ea78264236a4d279')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Missing User Instruction
+                                        <br>
+                                        <strong>文件位置：</strong> Dockerfile:2
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="658060d1068673797aab5c5a78f6a757b65f6614ea954f62ea78264236a4d279">
+                                    <h4>Missing User Instruction - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Critical</p>
+                                    <p><strong>File:</strong> Dockerfile</p>
+                                    <p><strong>Line:</strong> 2</p>
+                                    <p><strong>Description:</strong> A user should be specified in the dockerfile, otherwise the image will run as root</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+            
+                
+            
+                
+            
+
+        </body>
+        </html>
+        
