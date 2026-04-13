@@ -1,0 +1,2716 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>SAST Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1, h3 { color: #333; }
+                .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                .summary-table th, .summary-table td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+                .summary-table th { background-color: #f2f2f2; }
+                .issue-summary { margin: 10px 0; padding: 10px; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; display: flex; }
+                .issue-summary:hover { background-color: #f0f0f0; }
+                .issue-number { width: 40px; text-align: center; font-weight: bold; }
+                .severity-high { background-color: #f8d7da; }
+                .severity-medium { background-color: #fff3cd; }
+                .severity-low { background-color: #d4edda; }
+                .severity-critical { background-color: #ff0000; color: white; }
+                .issue-detail { display: none; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; margin-top: 10px; border-radius: 5px; }
+                .issue-detail h4 { margin: 0; }
+            </style>
+            <script>
+                function toggleDetail(id) {
+                    var detail = document.getElementById(id);
+                    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+                }
+            </script>
+        </head>
+        <body>
+            <h1>SAST Report</h1>
+
+            <!-- 汇总表格 -->
+            <h2>漏洞汇总：</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>严重级别</th>
+                        <th>漏洞数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>Critical</td>
+                        <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>High</td>
+                        <td>8</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Medium</td>
+                        <td>28</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Low</td>
+                        <td>1</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+
+            <h2>按严重程度分类的漏洞信息：</h2>
+
+            
+                
+            
+                
+                    <h3>High 风险漏洞（共8个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('f69cc7fc3b8c83305f820b4061ae48e7deb6ce68baacddc78e6027b57457d8f4')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL Command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> doc/rbac/etlrbac/backup.py:113
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="f69cc7fc3b8c83305f820b4061ae48e7deb6ce68baacddc78e6027b57457d8f4">
+                                    <h4>Improper neutralization of special elements used in an SQL Command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> doc/rbac/etlrbac/backup.py</p>
+                                    <p><strong>Line:</strong> 113</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+import sqlite3
+
+# Create a new database (in memory)
+con = sqlite3.connect(":memory:")
+# Get a cursor from the connection
+cur = con.cursor()
+# Create a tuple of the value to be used in the parameterized query
+params = ('user-input',)
+# execute the statement, passing in the params for the value
+cur.execute("select name from sqlite_master where name = ?", params)
+# work with the result
+result = cur.fetchall()
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('322efd1bb05be5af1cf2936e2d7444690aa872dee39379dc82fe7617fb43f7a0')">
+                                    <div class="issue-number">2</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL Command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> doc/rbac/etlrbac/backup.py:64
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="322efd1bb05be5af1cf2936e2d7444690aa872dee39379dc82fe7617fb43f7a0">
+                                    <h4>Improper neutralization of special elements used in an SQL Command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> doc/rbac/etlrbac/backup.py</p>
+                                    <p><strong>Line:</strong> 64</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+import sqlite3
+
+# Create a new database (in memory)
+con = sqlite3.connect(":memory:")
+# Get a cursor from the connection
+cur = con.cursor()
+# Create a tuple of the value to be used in the parameterized query
+params = ('user-input',)
+# execute the statement, passing in the params for the value
+cur.execute("select name from sqlite_master where name = ?", params)
+# work with the result
+result = cur.fetchall()
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('60d5d95133e9d0a5aa14f5def1f9a28b3fa4b4680359fccf0772d6359d6c8739')">
+                                    <div class="issue-number">3</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an expression language statement ('Expression Language Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/SpELParserUtils.java:168
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="60d5d95133e9d0a5aa14f5def1f9a28b3fa4b4680359fccf0772d6359d6c8739">
+                                    <h4>Improper neutralization of special elements used in an expression language statement ('Expression Language Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/SpELParserUtils.java</p>
+                                    <p><strong>Line:</strong> 168</p>
+                                    <p><strong>Description:</strong> The application was found calling SpringFramework's `SpelExpressionParser.parseExpression`.
+Calling this method directly with user-supplied input may allow an adversary to
+execute arbitrary Java code including OS system commands.
+
+Never call `parseExpression` or `parseRaw` directly with user-supplied input. Consider
+alternate
+methods such as a lookup table to take user input and resolve hardcoded values.
+
+Later versions of SpringFramework introduced a `SimpleEvaluationContext` which can be
+used to access bound data when calling the `getValue` result of `parseExpression`. This
+`SimpleEvaluationContext` has a reduced set of functionality and can restrict data binding
+to read-only or read-write contexts. An adversary could still access public properties
+or fields on custom types that have been provided to the evaluation context. Use with caution.
+
+Example using `SimpleEvaluationContext` with a read-write data binding context:
+```
+@RequestMapping(value="/spel", method=RequestMethod.POST)
+public String spel(@Validated User user, Model model)  {
+  // Create the Expression Parser
+  SpelExpressionParser parser = new SpelExpressionParser();
+  // Parse the expression
+  Expression parsedExpression = parser.parseExpression(model.getPossiblyUnsafeData());
+  // Create the read-write data binding context
+  SimpleEvaluationContext context = SimpleEvaluationContext.forReadWriteDataBinding().build();
+  // Execute the expression, passing in the read-write context
+  Object result = parsedExpression.getValue(context);
+  // work with the result
+  // ...
+  return "user";
+}
+```
+
+For more information on SimpleEvaluationContext see:
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/expression/spel/support/SimpleEvaluationContext.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('7b5049c495402f45c38c528c606e2714aebe69d72851ff8d54100091e7f77e9a')">
+                                    <div class="issue-number">4</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper control of generation of code ('Code Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/util/SoapFreeMarkerUtils.java:25
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="7b5049c495402f45c38c528c606e2714aebe69d72851ff8d54100091e7f77e9a">
+                                    <h4>Improper control of generation of code ('Code Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/util/SoapFreeMarkerUtils.java</p>
+                                    <p><strong>Line:</strong> 25</p>
+                                    <p><strong>Description:</strong> The application may allow control over a template string. Providing user input directly in the
+template by
+dynamically creating template strings may allow an adversary to execute arbitrary Java code,
+including
+OS system commands.
+
+For Velocity, never call `evaluate` with user-supplied input in the template string. Use a
+`VelocityContext`
+object instead to data-bind user-supplied information as it will be treated as an underlying
+data type and not
+template code.
+
+Example using Apache Velocity's `VelocityContext` and escape tools to pass in user-supplied
+data to a template:
+```
+// Create a tool manager
+ToolManager manager = new ToolManager(true);
+// Create a context from the tool manager
+Context context = manager.createContext();
+// For demonstration purposes, alternatively configure from a properties file
+context.put("esc", new EscapeTool());
+// For demonstration purposes, create an output buffer
+StringWriter stringWriter = new StringWriter();
+// Get userInput
+String userInput = "potentially malicious data";
+// Use the context to pass in the userInput value
+context.put("userInput", userInput);
+// Pass in the context, the output buffer, a logtag (demo), and the template with userInput
+// making sure to escape it if in the context of HTML.
+Velocity.evaluate(context, stringWriter, "demo", "Hello $esc.html($userInput)");
+// Work with the output buffer
+// ...
+```
+
+For other templating engines, please see your framework's documentation.
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('2739f1f35ae0c6a85a2761344a7353a46310601b7c7d11220938c3d06f8cb154')">
+                                    <div class="issue-number">5</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java:132
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="2739f1f35ae0c6a85a2761344a7353a46310601b7c7d11220938c3d06f8cb154">
+                                    <h4>Improper neutralization of special elements used in an SQL command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java</p>
+                                    <p><strong>Line:</strong> 132</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user-supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+// Some userInput
+String userInput = "someUserInput";
+// Your connection string
+String url = "...";
+// Get a connection from the DB via the DriverManager
+Connection conn = DriverManager.getConnection(url);
+// Create a prepared statement
+PreparedStatement st = conn.prepareStatement("SELECT name FROM table where name=?");
+// Set each parameters value by the index (starting from 1)
+st.setString(1, userInput);
+// Execute query and get the result set
+ResultSet rs = st.executeQuery();
+// Iterate over results
+while (rs.next()) {
+    // Get result for this row at the provided column number (starting from 1)
+    String result = rs.getString(1);
+    // ...
+}
+// Close the ResultSet
+rs.close();
+// Close the PreparedStatement
+st.close();
+```
+
+Example on using CriteriaBuilder to build queries
+```
+public List<YourEntity> findBySomeCriteria(EntityManager entityManager, String criteriaValue) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<YourEntity> query = criteriaBuilder.createQuery(YourEntity.class);
+    Root<YourEntity> root = query.from(YourEntity.class);
+
+    query.select(root).where(criteriaBuilder.equal(root.get("someProperty"), criteriaValue));
+
+    return entityManager.createQuery(query).getResultList();
+}
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('e12e266a39af7f91a08d389747b19752373ebe62efa2cd7a393dc28f8982381a')">
+                                    <div class="issue-number">6</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java:138
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="e12e266a39af7f91a08d389747b19752373ebe62efa2cd7a393dc28f8982381a">
+                                    <h4>Improper neutralization of special elements used in an SQL command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java</p>
+                                    <p><strong>Line:</strong> 138</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user-supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+// Some userInput
+String userInput = "someUserInput";
+// Your connection string
+String url = "...";
+// Get a connection from the DB via the DriverManager
+Connection conn = DriverManager.getConnection(url);
+// Create a prepared statement
+PreparedStatement st = conn.prepareStatement("SELECT name FROM table where name=?");
+// Set each parameters value by the index (starting from 1)
+st.setString(1, userInput);
+// Execute query and get the result set
+ResultSet rs = st.executeQuery();
+// Iterate over results
+while (rs.next()) {
+    // Get result for this row at the provided column number (starting from 1)
+    String result = rs.getString(1);
+    // ...
+}
+// Close the ResultSet
+rs.close();
+// Close the PreparedStatement
+st.close();
+```
+
+Example on using CriteriaBuilder to build queries
+```
+public List<YourEntity> findBySomeCriteria(EntityManager entityManager, String criteriaValue) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<YourEntity> query = criteriaBuilder.createQuery(YourEntity.class);
+    Root<YourEntity> root = query.from(YourEntity.class);
+
+    query.select(root).where(criteriaBuilder.equal(root.get("someProperty"), criteriaValue));
+
+    return entityManager.createQuery(query).getResultList();
+}
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('a77eabea4317421d11ea3cffdce25b04831adf9721492c4ec20fc34e18364f1c')">
+                                    <div class="issue-number">7</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java:257
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="a77eabea4317421d11ea3cffdce25b04831adf9721492c4ec20fc34e18364f1c">
+                                    <h4>Improper neutralization of special elements used in an SQL command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java</p>
+                                    <p><strong>Line:</strong> 257</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user-supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+// Some userInput
+String userInput = "someUserInput";
+// Your connection string
+String url = "...";
+// Get a connection from the DB via the DriverManager
+Connection conn = DriverManager.getConnection(url);
+// Create a prepared statement
+PreparedStatement st = conn.prepareStatement("SELECT name FROM table where name=?");
+// Set each parameters value by the index (starting from 1)
+st.setString(1, userInput);
+// Execute query and get the result set
+ResultSet rs = st.executeQuery();
+// Iterate over results
+while (rs.next()) {
+    // Get result for this row at the provided column number (starting from 1)
+    String result = rs.getString(1);
+    // ...
+}
+// Close the ResultSet
+rs.close();
+// Close the PreparedStatement
+st.close();
+```
+
+Example on using CriteriaBuilder to build queries
+```
+public List<YourEntity> findBySomeCriteria(EntityManager entityManager, String criteriaValue) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<YourEntity> query = criteriaBuilder.createQuery(YourEntity.class);
+    Root<YourEntity> root = query.from(YourEntity.class);
+
+    query.select(root).where(criteriaBuilder.equal(root.get("someProperty"), criteriaValue));
+
+    return entityManager.createQuery(query).getResultList();
+}
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-high"
+                                     onclick="toggleDetail('9e6871c3f4f81062a548c6517551d2177ca45ce010e7193714651449568c961d')">
+                                    <div class="issue-number">8</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in an SQL command ('SQL Injection')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java:79
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="9e6871c3f4f81062a548c6517551d2177ca45ce010e7193714651449568c961d">
+                                    <h4>Improper neutralization of special elements used in an SQL command ('SQL Injection') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> High</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/sharding/TableCreationService.java</p>
+                                    <p><strong>Line:</strong> 79</p>
+                                    <p><strong>Description:</strong> SQL Injection is a critical vulnerability that can lead to data or system compromise. By
+dynamically generating SQL query strings, user input may be able to influence the logic of
+the SQL statement. This could lead to an adversary accessing information they should
+not have access to, or in some circumstances, being able to execute OS functionality or code.
+
+Replace all dynamically generated SQL queries with parameterized queries. In situations where
+dynamic queries must be created, never use direct user input, but instead use a map or
+dictionary of valid values and resolve them using a user-supplied key.
+
+For example, some database drivers do not allow parameterized queries for `>` or `<` comparison
+operators. In these cases, do not use a user supplied `>` or `<` value, but rather have the
+user
+supply a `gt` or `lt` value. The alphabetical values are then used to look up the `>` and `<`
+values to be used in the construction of the dynamic query. The same goes for other queries
+where
+column or table names are required but cannot be parameterized.
+
+Example using `PreparedStatement` queries:
+```
+// Some userInput
+String userInput = "someUserInput";
+// Your connection string
+String url = "...";
+// Get a connection from the DB via the DriverManager
+Connection conn = DriverManager.getConnection(url);
+// Create a prepared statement
+PreparedStatement st = conn.prepareStatement("SELECT name FROM table where name=?");
+// Set each parameters value by the index (starting from 1)
+st.setString(1, userInput);
+// Execute query and get the result set
+ResultSet rs = st.executeQuery();
+// Iterate over results
+while (rs.next()) {
+    // Get result for this row at the provided column number (starting from 1)
+    String result = rs.getString(1);
+    // ...
+}
+// Close the ResultSet
+rs.close();
+// Close the PreparedStatement
+st.close();
+```
+
+Example on using CriteriaBuilder to build queries
+```
+public List<YourEntity> findBySomeCriteria(EntityManager entityManager, String criteriaValue) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<YourEntity> query = criteriaBuilder.createQuery(YourEntity.class);
+    Root<YourEntity> root = query.from(YourEntity.class);
+
+    query.select(root).where(criteriaBuilder.equal(root.get("someProperty"), criteriaValue));
+
+    return entityManager.createQuery(query).getResultList();
+}
+```
+
+For more information on SQL Injection see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+                    <h3>Medium 风险漏洞（共28个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('08162d3ae5d904ed4bfb2dc15453c76f57b6a79125db447a576d3a29a055b535')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Allocation of resources without limits or throttling
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/resources/scripts/mts-cdr-sync.py:110
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="08162d3ae5d904ed4bfb2dc15453c76f57b6a79125db447a576d3a29a055b535">
+                                    <h4>Allocation of resources without limits or throttling - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/resources/scripts/mts-cdr-sync.py</p>
+                                    <p><strong>Line:</strong> 110</p>
+                                    <p><strong>Description:</strong> The application was found using the `requests` module without configuring a timeout value for
+connections. This could lead to uncontrolled resource consumption where the application could
+run out of
+socket descriptors, effectively causing a Denial of Service (DoS).
+
+To remediate this issue, pass in a `timeout=` argument to each `requests` call.
+
+Example using a timeout for an HTTP GET request:
+```
+# Issue a GET request to https://example.com with a timeout of 10 seconds
+response = requests.get('https://example.com', timeout=10)
+# Work with the response object
+# ...
+```
+
+For more information on using the requests module see:
+- https://requests.readthedocs.io/en/latest/api/
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('dd52e1d4d16dc9f7a018398c852095c30b301a983a864371f052d0af4f6ec0eb')">
+                                    <div class="issue-number">2</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/AESUtils.java:172
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="dd52e1d4d16dc9f7a018398c852095c30b301a983a864371f052d0af4f6ec0eb">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/AESUtils.java</p>
+                                    <p><strong>Line:</strong> 172</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+// Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('7bf217da57e53e6da172e307278686ae538b684b0241d4bcca26b8a73f5f98af')">
+                                    <div class="issue-number">3</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:215
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="7bf217da57e53e6da172e307278686ae538b684b0241d4bcca26b8a73f5f98af">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 215</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+// Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('d44dd6fb68262fd63deae1682b8544fd1a383425651307c000436be240732e93')">
+                                    <div class="issue-number">4</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:94
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="d44dd6fb68262fd63deae1682b8544fd1a383425651307c000436be240732e93">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 94</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+// Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('432a2f6eb6c0e450300e030dd9c9b9bcfe6a67c666d903418b112aa24bf89972')">
+                                    <div class="issue-number">5</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/AESUtils.java:172
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="432a2f6eb6c0e450300e030dd9c9b9bcfe6a67c666d903418b112aa24bf89972">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/AESUtils.java</p>
+                                    <p><strong>Line:</strong> 172</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('cf6ee5762b21772cbff0c95328c17ee9400950e63d0829f1f4d18de2e3708de0')">
+                                    <div class="issue-number">6</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:215
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="cf6ee5762b21772cbff0c95328c17ee9400950e63d0829f1f4d18de2e3708de0">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 215</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('8ee36a3d2fa2005887c8363ac362d67b6123c45a6e2c19096501a3f25b8a367c')">
+                                    <div class="issue-number">7</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:94
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="8ee36a3d2fa2005887c8363ac362d67b6123c45a6e2c19096501a3f25b8a367c">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 94</p>
+                                    <p><strong>Description:</strong> Cryptographic algorithms provide many different modes of operation, only some of which provide
+message integrity. Without message integrity it could be possible for an adversary to attempt
+to tamper with the ciphertext which could lead to compromising the encryption key. Newer
+algorithms
+apply message integrity to validate ciphertext has not been tampered with.
+
+Instead of using an algorithm that requires configuring a cipher mode, an algorithm
+that has built-in message integrity should be used. Consider using `ChaCha20Poly1305` or
+`AES-256-GCM` instead.
+
+For older applications that don't have support for `ChaCha20Poly1305`, `AES-256-GCM` is
+recommended, however it has many drawbacks:
+  - Slower than `ChaCha20Poly1305`.
+  - Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] ivKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our ivKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(ivKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV Key
+    byte[] ivKey = new byte[12];
+    random.nextBytes(ivKey);
+
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, ivKey, secretKey);
+
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+
+     // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, ivKey, secretKey);
+
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('6909e2a9c8e25d64433f797ed8c4a61bae4e3149356b84059cc532389e189afb')">
+                                    <div class="issue-number">8</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Inadequate encryption strength
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/smsc/TrustStoreSSLSocketConnectionFactory.java:61
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="6909e2a9c8e25d64433f797ed8c4a61bae4e3149356b84059cc532389e189afb">
+                                    <h4>Inadequate encryption strength - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/smsc/TrustStoreSSLSocketConnectionFactory.java</p>
+                                    <p><strong>Line:</strong> 61</p>
+                                    <p><strong>Description:</strong> The application was found enabling insecure TLS protocol versions. When enabling protocol
+versions for an `SSLContext`, only the following versions should be allowed:
+- TLSv1.2
+- TLSv1.3
+- DTLSv1.2
+- DTLSv1.3
+
+To mitigate potential security risks, it is strongly advised to enforce TLS 1.2 as the minimum
+protocol version and disallow older versions such as TLS 1.0. Do note that newer versions of
+Java do not even support TLS 1.0 and will throw `NoSuchAlgorithmException`. Versions of TLS
+prior to 1.2 could expose the connection to downgrade attacks, where an adversary intercepts
+the
+connection and alters the requested protocol version to be a less secure one.
+
+In many scenarios, relying on the default system configuration does not meet compliance
+standards. This is due to the application being deployed across diverse systems with varying
+configurations and Java versions. While the default value may be secure on modern and
+up-to-date systems, it may not hold true for older systems. Consequently, it is highly
+recommended to explicitly define a secure configuration in all cases.
+
+Example configuring an SSLContext with TLSv1.2:
+```
+// Create an SSLContext with TLSv1.2 explicitly
+SSLContext tlsContext = SSLContext.getInstance("TLSv1.2"); // or TLSv1.3, DTLSv1.2, DTLSv1.3
+
+// Alternatively, set the enabled protocols
+SSLContext serverSslContext = SSLContext.getInstance("TLS");
+SSLEngine serverEngine = serverSslContext.createSSLEngine();
+// Calling setEnabledProtocols will override the original context's configured protocol version
+serverEngine.setEnabledProtocols(new String[]{ "TLSv1.2" });
+```
+
+For more information on `SSLContext` see:
+- https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/net/ssl/SSLContext.html
+
+For more information on MiTM attacks see:
+- https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('b6a9b40741bb6cacaf928dceafd8e35e322cd8ea9ed14a4e5e449f7a675bdcb4')">
+                                    <div class="issue-number">9</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:215
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="b6a9b40741bb6cacaf928dceafd8e35e322cd8ea9ed14a4e5e449f7a675bdcb4">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 215</p>
+                                    <p><strong>Description:</strong> DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.
+Newer algorithms  apply message integrity to validate ciphertext has not been tampered
+with. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the
+alternatives such as `AES-256-GCM`.
+
+For older applications that don't have support for `ChaCha20Poly1305`,
+`AES-256-GCM` is recommended, however it has many drawbacks:
+- Slower than `ChaCha20Poly1305`.
+- Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our nonceKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV nonceKey
+    byte[] nonceKey = new byte[12];
+    random.nextBytes(nonceKey);
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+    // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('43ccd342a44d4ecbd3102cf4cc2a160cf997c47fc626abf48f7b906f17a3d78b')">
+                                    <div class="issue-number">10</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/EncryptUtils.java:40
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="43ccd342a44d4ecbd3102cf4cc2a160cf997c47fc626abf48f7b906f17a3d78b">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/EncryptUtils.java</p>
+                                    <p><strong>Line:</strong> 40</p>
+                                    <p><strong>Description:</strong> DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.
+Newer algorithms  apply message integrity to validate ciphertext has not been tampered
+with. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the
+alternatives such as `AES-256-GCM`.
+
+For older applications that don't have support for `ChaCha20Poly1305`,
+`AES-256-GCM` is recommended, however it has many drawbacks:
+- Slower than `ChaCha20Poly1305`.
+- Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our nonceKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV nonceKey
+    byte[] nonceKey = new byte[12];
+    random.nextBytes(nonceKey);
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+    // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('0893d6b823257b615c417e06d9cc08d6fa795df4eb9c33149a3c7d6c97a8f59d')">
+                                    <div class="issue-number">11</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/EncryptUtils.java:58
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="0893d6b823257b615c417e06d9cc08d6fa795df4eb9c33149a3c7d6c97a8f59d">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/EncryptUtils.java</p>
+                                    <p><strong>Line:</strong> 58</p>
+                                    <p><strong>Description:</strong> DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.
+Newer algorithms  apply message integrity to validate ciphertext has not been tampered
+with. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the
+alternatives such as `AES-256-GCM`.
+
+For older applications that don't have support for `ChaCha20Poly1305`,
+`AES-256-GCM` is recommended, however it has many drawbacks:
+- Slower than `ChaCha20Poly1305`.
+- Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our nonceKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV nonceKey
+    byte[] nonceKey = new byte[12];
+    random.nextBytes(nonceKey);
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+    // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('12e228dbecb40cdca80f54d806e74546ac678f462e87f0f366a891a5172ffbb2')">
+                                    <div class="issue-number">12</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java:94
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="12e228dbecb40cdca80f54d806e74546ac678f462e87f0f366a891a5172ffbb2">
+                                    <h4>Use of a broken or risky cryptographic algorithm - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/encoder/JoyCodec.java</p>
+                                    <p><strong>Line:</strong> 94</p>
+                                    <p><strong>Description:</strong> DES, TripleDES and RC2 are all considered broken or insecure cryptographic algorithms.
+Newer algorithms  apply message integrity to validate ciphertext has not been tampered
+with. Consider using `ChaCha20Poly1305` instead as it is easier and faster than the
+alternatives such as `AES-256-GCM`.
+
+For older applications that don't have support for `ChaCha20Poly1305`,
+`AES-256-GCM` is recommended, however it has many drawbacks:
+- Slower than `ChaCha20Poly1305`.
+- Catastrophic failure if nonce values are reused.
+
+Example using `ChaCha20Poly1305`:
+```
+public encrypt() throws Exception {
+    chaChaEncryption("Secret text to encrypt".getBytes(StandardCharsets.UTF_8));
+}
+
+public SecureRandom getSecureRandomDRBG() throws NoSuchAlgorithmException {
+    // Use DRBG according to
+http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf
+    return SecureRandom.getInstance("DRBG",
+            // Security strength in bits (default is 128)
+            DrbgParameters.instantiation(256,
+                // Set prediction resistance and re-seeding
+                DrbgParameters.Capability.PR_AND_RESEED,
+                // Set the personalization string (optional, not necessary)
+                "some_personalization_string".getBytes()
+            )
+    );
+}
+
+public Cipher getChaCha20Poly1305(int mode, byte[] nonceKey, byte[] secretKey) throws
+NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException,
+InvalidAlgorithmParameterException  {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create a ChaCha20-Poly1305 cipher instance
+    Cipher chaChaCipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding");
+    // Create our parameterSpec using our nonceKey
+    AlgorithmParameterSpec parameterSpec = new IvParameterSpec(nonceKey);
+    // Create a SecretKeySpec using our secretKey
+    SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey, "ChaCha20");
+    // Initialize and return the cipher for the provided mode
+    chaChaCipher.init(mode, secretKeySpec, parameterSpec, random);
+    return chaChaCipher;
+}
+
+public void chaChaEncryption(byte[] plainText) throws NoSuchAlgorithmException,
+NoSuchPaddingException, InvalidKeyException, InvalidAlgorithmParameterException {
+    // Get a DRBG random number generator instance
+    SecureRandom random = getSecureRandomDRBG();
+    // Create secretKey
+    byte[] secretKey = new byte[32];
+    random.nextBytes(secretKey);
+    // Create an IV nonceKey
+    byte[] nonceKey = new byte[12];
+    random.nextBytes(nonceKey);
+    // Create a chaCha encryption cipher instance
+    Cipher chaChaEncryptor = getChaCha20Poly1305(Cipher.ENCRYPT_MODE, nonceKey, secretKey);
+    // Encrypt the text using ChaCha20Poly1305
+    byte[] cipherText = null;
+    try {
+        cipherText = chaChaEncryptor.doFinal(plainText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to encrypt text");
+        return;
+    }
+    System.out.println("encrypted: " + Base64.getEncoder().encodeToString(cipherText));
+    // Create a chaCha decryption cipher instance
+    Cipher chaChaDecryptor = getChaCha20Poly1305(Cipher.DECRYPT_MODE, nonceKey, secretKey);
+    // Decrypt the text
+    byte[] decryptedText = null;
+    try {
+        decryptedText = chaChaDecryptor.doFinal(cipherText);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        System.out.println("failed to decrypt text");
+        return;
+    }
+    System.out.println("decrypted: " + new String(decryptedText, StandardCharsets.UTF_8));
+}
+```
+
+For more information on Java Cryptography see:
+https://docs.oracle.com/en/java/javase/15/security/java-cryptography-architecture-jca-reference-guide.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('1c9ed2e330917cd8240eabc5f1ed3e6226e9ecb999ee91332fa9fce39a7fd402')">
+                                    <div class="issue-number">13</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/interceptor/ChinaTelecomApiInterceptor.java:114
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="1c9ed2e330917cd8240eabc5f1ed3e6226e9ecb999ee91332fa9fce39a7fd402">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/operator/carrierapi/http/interceptor/ChinaTelecomApiInterceptor.java</p>
+                                    <p><strong>Line:</strong> 114</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('4cbef6fab6f895a1d4e06414c95f1056b94ae7fc591f7735093a2530ec4d41e8')">
+                                    <div class="issue-number">14</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/FileUtils.java:145
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="4cbef6fab6f895a1d4e06414c95f1056b94ae7fc591f7735093a2530ec4d41e8">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/FileUtils.java</p>
+                                    <p><strong>Line:</strong> 145</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('9f6e47659b8e1f468b56eba226fd85523e177bb735e5ad94f429a69657df66e0')">
+                                    <div class="issue-number">15</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java:32
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="9f6e47659b8e1f468b56eba226fd85523e177bb735e5ad94f429a69657df66e0">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java</p>
+                                    <p><strong>Line:</strong> 32</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('4de7a75860d56e89bcb5232bfc3cbf52251919e55003a190455ea82efa9c66f5')">
+                                    <div class="issue-number">16</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java:47
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="4de7a75860d56e89bcb5232bfc3cbf52251919e55003a190455ea82efa9c66f5">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java</p>
+                                    <p><strong>Line:</strong> 47</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('8d6e9d04ea1101733bde883fc5dcbed4144cb16e0f20ddcef5f724c0c7c268a1')">
+                                    <div class="issue-number">17</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java:63
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="8d6e9d04ea1101733bde883fc5dcbed4144cb16e0f20ddcef5f724c0c7c268a1">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/util/MD5Util.java</p>
+                                    <p><strong>Line:</strong> 63</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('56e7aa926d64aeb35d6f5d131c02f08246782f3257f11d1c78cd3596470afa91')">
+                                    <div class="issue-number">18</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/config/mybatis/interceptor/DataPermissionCacheKey.java:72
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="56e7aa926d64aeb35d6f5d131c02f08246782f3257f11d1c78cd3596470afa91">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/config/mybatis/interceptor/DataPermissionCacheKey.java</p>
+                                    <p><strong>Line:</strong> 72</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('89ac18ff51834f491ed46272acdd5dc5f6b7ea0f02d8bd1c40ce99100b0cd7e0')">
+                                    <div class="issue-number">19</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Use of a broken or risky cryptographic algorithm (SHA1/MD5)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:846
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="89ac18ff51834f491ed46272acdd5dc5f6b7ea0f02d8bd1c40ce99100b0cd7e0">
+                                    <h4>Use of a broken or risky cryptographic algorithm (SHA1/MD5) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 846</p>
+                                    <p><strong>Description:</strong> The application was found using an insecure or risky digest or signature algorithm. Both MD5
+and SHA1 hash algorithms have been found to be vulnerable to producing collisions.
+This means
+that two different values, when hashed, can lead to the same hash value. If the application is
+trying
+to use these hash methods for storing passwords, then it is recommended to switch to a
+password hashing
+algorithm such as Argon2id or PBKDF2.
+strongly recommended that a standard Digest algorithm be chosen instead as implementing
+a digest by hand is error-prone.
+
+Example of creating a SHA-384 hash:
+```
+// Create a MessageDigest using the SHA-384 algorithm
+MessageDigest sha384Digest = MessageDigest.getInstance("SHA-384");
+// Call update with your data
+sha384Digest.update(input);
+// Only call digest once all data has been fed into the update sha384digest instance
+byte[] output = sha384Digest.digest();
+// output base64 encoded version of the hash
+System.out.println("hash: " + Base64.getEncoder().encodeToString(output));
+```
+
+For more information on secure password storage see OWASP:
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('56f577debfe1735ee1e7e80fa25a16f4b941b1aabc2fbe7e235345b1514032fb')">
+                                    <div class="issue-number">20</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of input during web page generation ('Cross-site Scripting')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:1005
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="56f577debfe1735ee1e7e80fa25a16f4b941b1aabc2fbe7e235345b1514032fb">
+                                    <h4>Improper neutralization of input during web page generation ('Cross-site Scripting') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 1005</p>
+                                    <p><strong>Description:</strong> The application is returning user-supplied data from an HTTP request directly into an HTTP
+response output
+writer. This could lead to Cross Site Scripting (XSS) if the input were malicious
+script code and the application server is not properly validating the output.
+
+XSS is an attack which exploits a web application or system to treat user input
+as markup or script code. It is important to encode the data depending on the specific context
+it is used in. There are at least six context types:
+
+- Inside HTML tags `<div>context 1</div>`
+- Inside attributes: `<div class="context 2"></div>`
+- Inside event attributes `<button onclick="context 3">button</button>`
+- Inside script blocks: `<script>var x = "context 4"</script>`
+- Unsafe element HTML assignment: `element.innerHTML = "context 5"`
+- Inside URLs: `<iframe src="context 6"></iframe><a href="context 6">link</a>`
+
+Script blocks alone have multiple ways they need to be encoded. Extra care must be taken if
+user input
+is ever output inside of script tags.
+
+User input that is displayed within the application must be encoded, sanitized or validated
+to ensure it cannot be treated as HTML or executed as Javascript code. Care must also be
+taken
+to not mix server-side templating with client-side templating, as the server-side templating
+will
+not encode things like {{ 7*7 }} which may execute client-side templating features.
+
+It is _NOT_ advised to encode user input prior to inserting into a data store. The data will
+need to be
+encoded depending on context of where it is output. It is much safer to force the displaying
+system to
+handle the encoding and not attempt to guess how it should be encoded.
+
+If possible do not use user input directly in the output to the response writer.
+
+If the application must output user-supplied input, it will need to encode the data depending
+on
+the output context.
+
+Consider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)
+`StringEscapeUtils` methods for various context. Please note there is no way to safely
+output script code in most circumstances, regardless of encoding. If calling the HTTP
+response writer directly, ensure that the `Content-Type` is set to `text/plain` so it will
+not be accidentally interpreted by HTML by modern browsers.
+```
+// Get user input
+String htmlInput = request.getParameter("userInput");
+// Encode the input using the Html4 encoder
+String htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);
+// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML
+response.setContentType("text/plain");
+// Ensure UTF-8
+response.setCharacterEncoding("UTF-8");
+// Write response
+response.getWriter().write(htmlEncoded);
+```
+
+For more information on XSS see OWASP:
+- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('493833304321a8faf3401994c19067e771e5b1afaef8bf05f706fe33b217539d')">
+                                    <div class="issue-number">21</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of input during web page generation ('Cross-site Scripting')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:173
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="493833304321a8faf3401994c19067e771e5b1afaef8bf05f706fe33b217539d">
+                                    <h4>Improper neutralization of input during web page generation ('Cross-site Scripting') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 173</p>
+                                    <p><strong>Description:</strong> The application is returning user-supplied data from an HTTP request directly into an HTTP
+response output
+writer. This could lead to Cross Site Scripting (XSS) if the input were malicious
+script code and the application server is not properly validating the output.
+
+XSS is an attack which exploits a web application or system to treat user input
+as markup or script code. It is important to encode the data depending on the specific context
+it is used in. There are at least six context types:
+
+- Inside HTML tags `<div>context 1</div>`
+- Inside attributes: `<div class="context 2"></div>`
+- Inside event attributes `<button onclick="context 3">button</button>`
+- Inside script blocks: `<script>var x = "context 4"</script>`
+- Unsafe element HTML assignment: `element.innerHTML = "context 5"`
+- Inside URLs: `<iframe src="context 6"></iframe><a href="context 6">link</a>`
+
+Script blocks alone have multiple ways they need to be encoded. Extra care must be taken if
+user input
+is ever output inside of script tags.
+
+User input that is displayed within the application must be encoded, sanitized or validated
+to ensure it cannot be treated as HTML or executed as Javascript code. Care must also be
+taken
+to not mix server-side templating with client-side templating, as the server-side templating
+will
+not encode things like {{ 7*7 }} which may execute client-side templating features.
+
+It is _NOT_ advised to encode user input prior to inserting into a data store. The data will
+need to be
+encoded depending on context of where it is output. It is much safer to force the displaying
+system to
+handle the encoding and not attempt to guess how it should be encoded.
+
+If possible do not use user input directly in the output to the response writer.
+
+If the application must output user-supplied input, it will need to encode the data depending
+on
+the output context.
+
+Consider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)
+`StringEscapeUtils` methods for various context. Please note there is no way to safely
+output script code in most circumstances, regardless of encoding. If calling the HTTP
+response writer directly, ensure that the `Content-Type` is set to `text/plain` so it will
+not be accidentally interpreted by HTML by modern browsers.
+```
+// Get user input
+String htmlInput = request.getParameter("userInput");
+// Encode the input using the Html4 encoder
+String htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);
+// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML
+response.setContentType("text/plain");
+// Ensure UTF-8
+response.setCharacterEncoding("UTF-8");
+// Write response
+response.getWriter().write(htmlEncoded);
+```
+
+For more information on XSS see OWASP:
+- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('affe494f821fa33ab6d422f1d980aa249b475aee28c8cd69aed0a2711e780229')">
+                                    <div class="issue-number">22</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of input during web page generation ('Cross-site Scripting')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:199
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="affe494f821fa33ab6d422f1d980aa249b475aee28c8cd69aed0a2711e780229">
+                                    <h4>Improper neutralization of input during web page generation ('Cross-site Scripting') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 199</p>
+                                    <p><strong>Description:</strong> The application is returning user-supplied data from an HTTP request directly into an HTTP
+response output
+writer. This could lead to Cross Site Scripting (XSS) if the input were malicious
+script code and the application server is not properly validating the output.
+
+XSS is an attack which exploits a web application or system to treat user input
+as markup or script code. It is important to encode the data depending on the specific context
+it is used in. There are at least six context types:
+
+- Inside HTML tags `<div>context 1</div>`
+- Inside attributes: `<div class="context 2"></div>`
+- Inside event attributes `<button onclick="context 3">button</button>`
+- Inside script blocks: `<script>var x = "context 4"</script>`
+- Unsafe element HTML assignment: `element.innerHTML = "context 5"`
+- Inside URLs: `<iframe src="context 6"></iframe><a href="context 6">link</a>`
+
+Script blocks alone have multiple ways they need to be encoded. Extra care must be taken if
+user input
+is ever output inside of script tags.
+
+User input that is displayed within the application must be encoded, sanitized or validated
+to ensure it cannot be treated as HTML or executed as Javascript code. Care must also be
+taken
+to not mix server-side templating with client-side templating, as the server-side templating
+will
+not encode things like {{ 7*7 }} which may execute client-side templating features.
+
+It is _NOT_ advised to encode user input prior to inserting into a data store. The data will
+need to be
+encoded depending on context of where it is output. It is much safer to force the displaying
+system to
+handle the encoding and not attempt to guess how it should be encoded.
+
+If possible do not use user input directly in the output to the response writer.
+
+If the application must output user-supplied input, it will need to encode the data depending
+on
+the output context.
+
+Consider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)
+`StringEscapeUtils` methods for various context. Please note there is no way to safely
+output script code in most circumstances, regardless of encoding. If calling the HTTP
+response writer directly, ensure that the `Content-Type` is set to `text/plain` so it will
+not be accidentally interpreted by HTML by modern browsers.
+```
+// Get user input
+String htmlInput = request.getParameter("userInput");
+// Encode the input using the Html4 encoder
+String htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);
+// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML
+response.setContentType("text/plain");
+// Ensure UTF-8
+response.setCharacterEncoding("UTF-8");
+// Write response
+response.getWriter().write(htmlEncoded);
+```
+
+For more information on XSS see OWASP:
+- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('cb8a3e6d6374bbbccce33f1f24784976f8d8df05ec8d160e9009e2323c88e068')">
+                                    <div class="issue-number">23</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of input during web page generation ('Cross-site Scripting')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:958
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="cb8a3e6d6374bbbccce33f1f24784976f8d8df05ec8d160e9009e2323c88e068">
+                                    <h4>Improper neutralization of input during web page generation ('Cross-site Scripting') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 958</p>
+                                    <p><strong>Description:</strong> The application is returning user-supplied data from an HTTP request directly into an HTTP
+response output
+writer. This could lead to Cross Site Scripting (XSS) if the input were malicious
+script code and the application server is not properly validating the output.
+
+XSS is an attack which exploits a web application or system to treat user input
+as markup or script code. It is important to encode the data depending on the specific context
+it is used in. There are at least six context types:
+
+- Inside HTML tags `<div>context 1</div>`
+- Inside attributes: `<div class="context 2"></div>`
+- Inside event attributes `<button onclick="context 3">button</button>`
+- Inside script blocks: `<script>var x = "context 4"</script>`
+- Unsafe element HTML assignment: `element.innerHTML = "context 5"`
+- Inside URLs: `<iframe src="context 6"></iframe><a href="context 6">link</a>`
+
+Script blocks alone have multiple ways they need to be encoded. Extra care must be taken if
+user input
+is ever output inside of script tags.
+
+User input that is displayed within the application must be encoded, sanitized or validated
+to ensure it cannot be treated as HTML or executed as Javascript code. Care must also be
+taken
+to not mix server-side templating with client-side templating, as the server-side templating
+will
+not encode things like {{ 7*7 }} which may execute client-side templating features.
+
+It is _NOT_ advised to encode user input prior to inserting into a data store. The data will
+need to be
+encoded depending on context of where it is output. It is much safer to force the displaying
+system to
+handle the encoding and not attempt to guess how it should be encoded.
+
+If possible do not use user input directly in the output to the response writer.
+
+If the application must output user-supplied input, it will need to encode the data depending
+on
+the output context.
+
+Consider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)
+`StringEscapeUtils` methods for various context. Please note there is no way to safely
+output script code in most circumstances, regardless of encoding. If calling the HTTP
+response writer directly, ensure that the `Content-Type` is set to `text/plain` so it will
+not be accidentally interpreted by HTML by modern browsers.
+```
+// Get user input
+String htmlInput = request.getParameter("userInput");
+// Encode the input using the Html4 encoder
+String htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);
+// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML
+response.setContentType("text/plain");
+// Ensure UTF-8
+response.setCharacterEncoding("UTF-8");
+// Write response
+response.getWriter().write(htmlEncoded);
+```
+
+For more information on XSS see OWASP:
+- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('9762a9356a8da07d72763f1b5bd8143706dbf1ff52e193ccf67a772724cb4e02')">
+                                    <div class="issue-number">24</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of input during web page generation ('Cross-site Scripting')
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java:972
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="9762a9356a8da07d72763f1b5bd8143706dbf1ff52e193ccf67a772724cb4e02">
+                                    <h4>Improper neutralization of input during web page generation ('Cross-site Scripting') - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/openapi/interceptor/IdempotentInterceptor.java</p>
+                                    <p><strong>Line:</strong> 972</p>
+                                    <p><strong>Description:</strong> The application is returning user-supplied data from an HTTP request directly into an HTTP
+response output
+writer. This could lead to Cross Site Scripting (XSS) if the input were malicious
+script code and the application server is not properly validating the output.
+
+XSS is an attack which exploits a web application or system to treat user input
+as markup or script code. It is important to encode the data depending on the specific context
+it is used in. There are at least six context types:
+
+- Inside HTML tags `<div>context 1</div>`
+- Inside attributes: `<div class="context 2"></div>`
+- Inside event attributes `<button onclick="context 3">button</button>`
+- Inside script blocks: `<script>var x = "context 4"</script>`
+- Unsafe element HTML assignment: `element.innerHTML = "context 5"`
+- Inside URLs: `<iframe src="context 6"></iframe><a href="context 6">link</a>`
+
+Script blocks alone have multiple ways they need to be encoded. Extra care must be taken if
+user input
+is ever output inside of script tags.
+
+User input that is displayed within the application must be encoded, sanitized or validated
+to ensure it cannot be treated as HTML or executed as Javascript code. Care must also be
+taken
+to not mix server-side templating with client-side templating, as the server-side templating
+will
+not encode things like {{ 7*7 }} which may execute client-side templating features.
+
+It is _NOT_ advised to encode user input prior to inserting into a data store. The data will
+need to be
+encoded depending on context of where it is output. It is much safer to force the displaying
+system to
+handle the encoding and not attempt to guess how it should be encoded.
+
+If possible do not use user input directly in the output to the response writer.
+
+If the application must output user-supplied input, it will need to encode the data depending
+on
+the output context.
+
+Consider using [Apache Commons Text](https://commons.apache.org/proper/commons-text/)
+`StringEscapeUtils` methods for various context. Please note there is no way to safely
+output script code in most circumstances, regardless of encoding. If calling the HTTP
+response writer directly, ensure that the `Content-Type` is set to `text/plain` so it will
+not be accidentally interpreted by HTML by modern browsers.
+```
+// Get user input
+String htmlInput = request.getParameter("userInput");
+// Encode the input using the Html4 encoder
+String htmlEncoded = StringEscapeUtils.escapeHtml4(htmlInput);
+// Force the HTTP response to be content type of text/plain so it is not interpreted as HTML
+response.setContentType("text/plain");
+// Ensure UTF-8
+response.setCharacterEncoding("UTF-8");
+// Write response
+response.getWriter().write(htmlEncoded);
+```
+
+For more information on XSS see OWASP:
+- https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('573ccd88033b092afd3e79a4b9681c306e16a895197689051f997b487f021bcb')">
+                                    <div class="issue-number">25</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Cross-site request forgery (CSRF)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/controller/user/UserController.java:108
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="573ccd88033b092afd3e79a4b9681c306e16a895197689051f997b487f021bcb">
+                                    <h4>Cross-site request forgery (CSRF) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/controller/user/UserController.java</p>
+                                    <p><strong>Line:</strong> 108</p>
+                                    <p><strong>Description:</strong> Detected a method annotated with 'RequestMapping' that does not specify
+the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or
+OPTIONS, and by default all HTTP methods are allowed when the HTTP method
+is not explicitly specified. This means that a method that performs state
+changes could be vulnerable to CSRF attacks. Cross-Site Request Forgery (CSRF) 
+is a security vulnerability where an attacker tricks a user into performing 
+unintended actions on a web application where they are authenticated. This 
+can lead to unauthorized actions like changing user settings, transferring 
+funds, or altering passwords, all without the user's knowledge, by exploiting 
+the trust a web application has in the user's browser.
+
+To mitigate, add the 'method' field and specify the HTTP method (such as 
+'RequestMethod.POST').
+
+Secure Code Example:
+```
+@RequestMapping(value = "/path", method = RequestMethod.POST)
+public void safe() {
+    // State-changing operations performed within this method.
+}
+```
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('85d2e1f2e48309b3a36ab7d37bccea17caf784c1872e89a6ea07f596b5cbc4ba')">
+                                    <div class="issue-number">26</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Cross-site request forgery (CSRF)
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/controller/open/OpenController.java:89
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="85d2e1f2e48309b3a36ab7d37bccea17caf784c1872e89a6ea07f596b5cbc4ba">
+                                    <h4>Cross-site request forgery (CSRF) - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/controller/open/OpenController.java</p>
+                                    <p><strong>Line:</strong> 89</p>
+                                    <p><strong>Description:</strong> Detected a method annotated with 'RequestMapping' that does not specify
+the HTTP method. CSRF protections are not enabled for GET, HEAD, TRACE, or
+OPTIONS, and by default all HTTP methods are allowed when the HTTP method
+is not explicitly specified. This means that a method that performs state
+changes could be vulnerable to CSRF attacks. Cross-Site Request Forgery (CSRF) 
+is a security vulnerability where an attacker tricks a user into performing 
+unintended actions on a web application where they are authenticated. This 
+can lead to unauthorized actions like changing user settings, transferring 
+funds, or altering passwords, all without the user's knowledge, by exploiting 
+the trust a web application has in the user's browser.
+
+To mitigate, add the 'method' field and specify the HTTP method (such as 
+'RequestMethod.POST').
+
+Secure Code Example:
+```
+@RequestMapping(value = "/path", method = RequestMethod.POST)
+public void safe() {
+    // State-changing operations performed within this method.
+}
+```
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('97349aa9b9e9660c85ea2ac6c446cee07a231b6aa02b12f4317cfa4fe28daa3d')">
+                                    <div class="issue-number">27</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Java Unsafe Jackson Deserialization
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/config/redis/RedisConfig.java:34
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="97349aa9b9e9660c85ea2ac6c446cee07a231b6aa02b12f4317cfa4fe28daa3d">
+                                    <h4>Java Unsafe Jackson Deserialization - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/config/redis/RedisConfig.java</p>
+                                    <p><strong>Line:</strong> 34</p>
+                                    <p><strong>Description:</strong> Jackson deserialization vulnerability in Java arises when applications
+using the Jackson library deserialize untrusted JSON data without proper safeguards,
+potentially leading to severe security risks like remote code execution (RCE).
+
+1. Avoid using polymorphic type handling and avoid deserializing user input.
+2. Absolutely avoid using Unsafe Base Types for fields. Types considered unsafe
+base types include:    
+  * java.lang.Object    
+  * java.io.Closeable    
+  * java.io.Serializable
+  * java.lang.AutoCloseable    
+  * java.lang.Cloneable    
+  * java.util.logging.Handler
+  * javax.naming.Referenceable    
+  * javax.sql.DataSource  
+List of types compiled from a set of all known deserialization "gadgets", types they implement.
+Reference : https://github.com/FasterXML/jackson-databind/issues/2587 
+3. For explicit per-type/per-property polymorphic handling (@JsonTypeInfo), don’t
+use:    
+* @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS) annotation     
+* @JsonTypeInfo(use = JsonTypeInfo.Id.MINIMAL_CLASS) annotation
+Instead use:    
+* @JsonTypeInfo(use = JsonTypeInfo.Id.NAME) annotation where possible.
+4. Use Safe Default Typing feature properly. Don’t use the deprecated ‘enableDefaultTyping()’.    
+* Refer: https://cowtowncoder.medium.com/jackson-2-10-safe-default-typing-2d018f0ce2ba
+* Use Type Validators properly.   
+* Don’t explicitly allow unsafe base types
+5. Avoid using  com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator
+* Does not do any validation, allows all subtypes. Only used for backwards-compatibility
+reasons: users should usually NOT use such a permissive implementation but use
+allow-list/criteria - based implementation.    
+* Refer: https://fasterxml.github.io/jackson-databind/javadoc/2.11/com/fasterxml/jackson/databind/jsontype/impl/LaissezFaireSubTypeValidator.html
+6. Use MapperFeature.BLOCK_UNSAFE_POLYMORPHIC_BASE_TYPES where possible.    
+* Refer: https://cowtowncoder.medium.com/jackson-2-11-features-40cdc1d2bdf3
+7. Regularly update to the latest version of Jackson library.
+</p>
+                                </div>
+                            </li>
+                        
+                            <li>
+                                <div class="issue-summary severity-medium"
+                                     onclick="toggleDetail('940f66838fb39d41095428d1d2c12e49ff1de83cea297d1278c9c8fbc07844d6')">
+                                    <div class="issue-number">28</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Exposure of sensitive system information to an unauthorized control sphere
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/resources/application.properties:150
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="940f66838fb39d41095428d1d2c12e49ff1de83cea297d1278c9c8fbc07844d6">
+                                    <h4>Exposure of sensitive system information to an unauthorized control sphere - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Medium</p>
+                                    <p><strong>File:</strong> src/main/resources/application.properties</p>
+                                    <p><strong>Line:</strong> 150</p>
+                                    <p><strong>Description:</strong> Spring Boot Actuator is fully enabled. This exposes sensitive endpoints
+such as /actuator/env, /actuator/logfile, /actuator/heapdump and others.
+If the application lacks proper security measures (e.g., authentication and 
+authorization), sensitive data could be accessed, compromising the application and 
+its infrastructure. This configuration poses a serious risk in production 
+environments or public-facing deployments.
+
+To mitigate the risks, take the following measures:
+  - Expose only the Actuator endpoints required for your use case
+  - For production environments, restrict exposure to non-sensitive endpoints 
+  like `health` or `info`
+  - Ensure Actuator endpoints are protected with authentication and authorization 
+  (e.g., via Spring Security)
+  - Use environment-specific configurations to limit exposure in production
+
+Secure Code Example:
+Instead of include: "*", list only the endpoints you need to expose:
+```
+management.endpoints.web.exposure.include="health,info,metrics"
+```
+
+References:
+- https://docs.spring.io/spring-boot/reference/actuator/endpoints.html#actuator.endpoints.exposing
+- https://medium.com/walmartglobaltech/perils-of-spring-boot-actuators-misconfiguration-185c43a0f785
+- https://blog.maass.xyz/spring-actuator-security-part-1-stealing-secrets-using-spring-actuators
+</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+                
+                    <h3>Low 风险漏洞（共1个）：</h3>
+                    <ul>
+                        
+                            <li>
+                                <div class="issue-summary severity-low"
+                                     onclick="toggleDetail('0b6e2b66194fb2b02a9c8a9caf0f48acaa88cdc48c2c50d7748725293a7845ab')">
+                                    <div class="issue-number">1</div>
+                                    <div class="issue-details">
+                                        <strong>漏洞名称：</strong> Improper neutralization of special elements used in a command
+                                        <br>
+                                        <strong>文件位置：</strong> src/main/java/com/redteamobile/cmp/service/email/AwsEmailServiceImpl.java:69
+                                    </div>
+                                </div>
+                                <div class="issue-detail" id="0b6e2b66194fb2b02a9c8a9caf0f48acaa88cdc48c2c50d7748725293a7845ab">
+                                    <h4>Improper neutralization of special elements used in a command - 详细信息</h4>
+                                    <p><strong>Severity:</strong> Low</p>
+                                    <p><strong>File:</strong> src/main/java/com/redteamobile/cmp/service/email/AwsEmailServiceImpl.java</p>
+                                    <p><strong>Line:</strong> 69</p>
+                                    <p><strong>Description:</strong> The application was found calling `MimeMessage` methods without encoding
+new line characters. Much like HTTP, Simple Mail Transfer Protocol (SMTP) is a
+text based protocol that uses headers to convey additional directives for how
+email messages should be treated. An adversary could potentially cause email
+messages to be sent to unintended recipients by abusing the CC or BCC headers
+if they were able to inject them.
+
+To mitigate this issue, `\r\n` (CRLF) character sequences must be escaped
+or encoded prior to being used in any of the `MimeMessage` methods.
+
+Example that escapes values that come from user input with
+[Apache Commons Text](https://commons.apache.org/proper/commons-text/):
+```
+// Create a MimeMessage with a javax.mail.Session
+Message message = new MimeMessage(session);
+// Set the from address
+message.setFrom(new InternetAddress("source@example.com"));
+// Set the to address
+message.setRecipients(Message.RecipientType.TO,new InternetAddress[] {new
+InternetAddress("destination@example.com")});
+// Example user input
+String subject = "potentially malicious data";
+String headerValue = "potentially malicious data";
+// Use Apache Commons Text StringEscapeUtils.escapeJava to encode \r\n to \\r\\n.
+message.setSubject(StringEscapeUtils.escapeJava(subject));
+// Use Apache Commons Text StringEscapeUtils.escapeJava to encode \r\n to \\r\\n.
+message.addHeader("HeaderName", StringEscapeUtils.escapeJava(header));
+// Use Apache Commons Text StringEscapeUtils.escapeJava to encode \r\n to \\r\\n.
+message.setDescription(StringEscapeUtils.escapeJava("some description"));
+// Use Apache Commons Text StringEscapeUtils.escapeJava to encode \r\n to \\r\\n.
+message.setDisposition(StringEscapeUtils.escapeJava("some disposition"));
+// Set the mail body text
+message.setText("Some email content.");
+// Send the message
+```
+</p>
+                                </div>
+                            </li>
+                        
+                    </ul>
+                
+            
+
+        </body>
+        </html>
+        
